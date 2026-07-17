@@ -1,0 +1,12 @@
+gradio
+langgraph
+langchain
+langchain-core
+langchain-groq
+groq
+python-docx
+PyMuPDF
+pandas
+plotly
+python-dotenv
+typing_extensions
