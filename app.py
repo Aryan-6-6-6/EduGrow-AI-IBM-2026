@@ -446,7 +446,7 @@ footer{display:none !important;}
 .example-btn:hover{background:#334155 !important;}
 """
 
-with gr.Blocks(title="EduGrow AI",css=CUSTOM_CSS) as ui:
+with gr.Blocks(title="EduGrow AI") as ui:
 
     # ================= HERO =================
     gr.HTML("""
@@ -594,24 +594,9 @@ with gr.Blocks(title="EduGrow AI",css=CUSTOM_CSS) as ui:
             outputs=msg,
         )
 
-def launch_app():
-    base_port = int(os.getenv("PORT", os.getenv("GRADIO_SERVER_PORT", "7861")))
-    last_error = None
-
-    for port in [base_port] + list(range(base_port + 1, base_port + 21)):
-        try:
-            ui.queue()
-            ui.launch(server_name="127.0.0.1", server_port=port, share=False, inbrowser=True)
-            return
-        except OSError as exc:
-            last_error = exc
-            if "address" in str(exc).lower() or "port" in str(exc).lower():
-                print(f"Port {port} is unavailable, trying next port...")
-                continue
-            raise
-
-    raise RuntimeError(f"Could not start the Gradio app. Last error: {last_error}") from last_error
-
-
 if __name__ == "__main__":
-    launch_app()
+    ui.queue()
+    ui.launch(
+        server_name="0.0.0.0",
+        server_port=int(os.environ.get("PORT", 7860))
+    )
