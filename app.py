@@ -16,7 +16,7 @@ if not GROQ_API_KEY:
     raise ValueError("GROQ_API_KEY environment variable is missing.")
 
 
-llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0.3)
+llm = ChatGroq(model="openai/gpt-oss-120b", temperature=0.3)
 print("✅ LLM client ready.")
 
 """## 3. Agent identity
